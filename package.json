@@ -1,0 +1,22 @@
+{
+  "name": "zillio-again",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "express-hbs": "^2.1.2",
+    "express-session": "^1.16.1",
+    "hbs": "^4.0.4",
+    "images-scraper": "^2.0.11",
+    "mongoose": "^5.5.2",
+    "sharp": "^0.22.0"
+  }
+}
