@@ -10,7 +10,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.18.0",
     "body-parser": "^1.18.3",
+    "compress-images": "^1.5.1",
     "dotenv": "^7.0.0",
     "express": "^4.16.4",
     "express-handlebars": "^3.0.2",
@@ -20,11 +22,11 @@
     "jimp": "^0.6.1",
     "mongoose": "^5.5.2",
     "randomstring": "^1.1.5",
-    "request-promise": "^4.2.4",
     "session-file-store": "^1.2.0"
   },
-
   "nodemonConfig": {
-    "ignore": ["sessions/*.json"]
+    "ignore": [
+      "sessions/*.json"
+    ]
   }
 }

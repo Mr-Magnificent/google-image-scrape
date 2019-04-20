@@ -10,11 +10,30 @@ mongoose.connect(`mongodb://${process.env.USERNAME}:${process.env.PASSWORD}@ds22
     console.log("mlabs connected!");
 });
 
-const Keyword = mongoose.model('Keyword', {
-    value: String,
-    users: [{
+const User = mongoose.model('User', {
+    user: String,
+    keyword: [{
         name: String
     }]
 });
 
-module.exports = Keyword;
+exports.findUser = async (id) => {
+    const data = await User.findOne({user: id});
+    console.log("data", data);
+    return data;
+}
+
+exports.UserExists = async (id, query) => {
+    const data = await User.findOne({user: id});
+    data.keyword.push({name: query});
+    data.save();
+}
+
+exports.addUser = async (id, query) => {
+    const data = new User;
+    data.user = id;
+    data.keyword.push({name: query});
+    data.save();
+}
+
+exports.User = User;

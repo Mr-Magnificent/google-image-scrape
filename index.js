@@ -39,6 +39,15 @@ app.get('/', function (req, res) {
        req.session.id = randomstring();
     }
     res.render('index', {layout: false});
+});
+
+app.get('/searched', async function(req, res) {
+    if(!req.session.id == undefined) {
+        res.redirect('/');
+    }
+    const userData = await database.findUser(req.session.id);
+    console.log(userData);
+    res.render('searched', {value: userData.value, keyword: userData.keyword, layout: false});
 })
 
 app.use('/api', router);
