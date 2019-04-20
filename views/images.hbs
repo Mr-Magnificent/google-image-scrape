@@ -1,18 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Keywords Searched</title>
+    <title>Images Present</title>
 </head>
+
 <body>
-    <h1>User Searched:</h1>
+    <h1>Images for {{search}}:</h1>
     <ul>
-        {{#each keyword}}
-        <li><a href="/images/{{this}}">{{this}}</a></li>
+        {{#each name}}
+        <li><a target="_blank" href="/api/images/{{../search}}/name/{{this}}">{{this}}</a></li>
         {{/each}}
     </ul>
+    <br />
+    <a href='/searched'>Go back to "keywords searched" page</a>
+    <br />
     <br />
     <a href='/'>Go back to search page</a>
 </body>

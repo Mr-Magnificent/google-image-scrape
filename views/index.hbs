@@ -8,10 +8,21 @@
 </head>
 <body style="display: flex; flex-direction: column; align-items: center">
     <h1>Google image scrape demo</h1>
-    <form action="/api/search" method="GET">
+    <form action="/api/search" method="GET" onsubmit="return showBlank()">
         <label for="query">Search:&nbsp;</label>
         <input type="text" name="search" placeholder="enter keyword" />
         <input type="submit" value="submit" />
     </form>
+    </br>
+    </br>
+    <div>
+        <a href="/searched">Show all searched images</a>
+    </div>
 </body>
+<script>
+    function showBlank() {
+        alert('Please wait! This can take a while!');
+        return true;
+    }
+</script>
 </html>
