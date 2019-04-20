@@ -53,7 +53,11 @@ app.get('/searched', async function(req, res) {
     if(!req.session.id == undefined) {
         res.redirect('/');
     }
-    const userData = await database.findUser(req.session.id);
+    try {
+        const userData = await database.findUser(req.session.id);
+    } catch (err) {
+        console.log(err.message);
+    }
     res.render('searched', {keyword: userData.keyword, layout: false});
 })
 

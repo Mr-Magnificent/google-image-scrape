@@ -45,6 +45,7 @@ exports.search = async (req, res) => {
                 show: false
             }
         })
+        res.status(200).send('<a href="/">Go back</a>');
 
         let imageReqest = [];
         try {
@@ -58,7 +59,6 @@ exports.search = async (req, res) => {
             const filename = `./images/${req.query.search}/` + RegExp(/[^\/]+$/).exec(image.url)[0];
             imageReqest.push(downloadImage(image.url, filename));
         }
-        res.status(200).send('<a href="/">Go back</a>');
         const resp = await Promise.all(imageReqest);
     } catch (err) {
         res.status(400).send(err.message);
