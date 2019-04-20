@@ -3,6 +3,7 @@ const Scraper = require('images-scraper'),
 
 const axios = require('axios');
 const jimp = require('jimp');
+const uuid = require('uuid/v4');
 const path = require('path');
 const url = require('url');
 
@@ -34,8 +35,20 @@ exports.search = async (req, res) => {
         }
         res.status(200).send('<a href="/">Go back</a>');
         return;
-    } catch (err) {}
+    } catch (err) {
+        console.log(err.message);
+    }
 
+    try {
+        if (!checkUserExists) {
+            await database.addUser(req.session.id, req.query.search);
+        } else {
+            await database.UserExists(req.session.id, req.query.search);
+        }
+    } catch (err) {
+        console.log(err.message);
+    }
+    
     try {
         res.status(200).send('<a href="/">Go back</a>');
         const imageRes = await google.list({
@@ -47,6 +60,7 @@ exports.search = async (req, res) => {
             }
         })
 
+        console.log(imageRes);
         let imageReqest = [];
         try {
             await fsp.mkdir('./images/' + req.query.search);
@@ -54,14 +68,16 @@ exports.search = async (req, res) => {
             console.log(err.message);
         }
         for (let image of imageRes) {
-
             // Generate a unique filename
-            const filename = `./images/${req.query.search}/` + RegExp(/[^\/]+$/).exec(image.url)[0];
+            let filename;
+                filename = `./images/${req.query.search}/` + uuid() + '.' + (RegExp(/(jpg|png|tiff)/).exec(image.url)[0] || 'jpg');
+            console.log(filename);
             imageReqest.push(downloadImage(image.url, filename));
         }
         const resp = await Promise.all(imageReqest);
+
     } catch (err) {
-        res.status(400).send(err.message);
+        // res.status(400).send(err.message);
     }
 };
 

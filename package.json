@@ -23,7 +23,8 @@
     "jimp": "^0.6.1",
     "mongoose": "^5.5.2",
     "randomstring": "^1.1.5",
-    "session-file-store": "^1.2.0"
+    "session-file-store": "^1.2.0",
+    "uuid": "^3.3.2"
   },
   "nodemonConfig": {
     "ignore": [
