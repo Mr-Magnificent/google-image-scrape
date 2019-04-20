@@ -37,6 +37,7 @@ exports.search = async (req, res) => {
     } catch (err) {}
 
     try {
+        res.status(200).send('<a href="/">Go back</a>');
         const imageRes = await google.list({
             keyword: req.query.search,
             num: 15,
@@ -45,7 +46,6 @@ exports.search = async (req, res) => {
                 show: false
             }
         })
-        res.status(200).send('<a href="/">Go back</a>');
 
         let imageReqest = [];
         try {
